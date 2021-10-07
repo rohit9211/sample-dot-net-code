@@ -9,7 +9,7 @@ pipeline{
         pollSCM 'H * * * *'
     }
  }
-tages{
+stages{
  stage('Checkout') {
     steps {
      git credentialsId: 'asp' , url: 'https://github.com/Sandeep0045/sample-dot-net-code.git', branch: 'master'
