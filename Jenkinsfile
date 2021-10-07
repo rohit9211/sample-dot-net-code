@@ -9,44 +9,46 @@ pipeline{
         pollSCM 'H * * * *'
     }
  }
-stages{
- stage('Checkout') {
-    steps {
-     git credentialsId: 'asp' , url: 'https://github.com/Sandeep0045/sample-dot-net-code.git', branch: 'master'
+    stages{
+        stage('Checkout') {
+           steps {
+           git credentialsId: 'asp' , url: 'https://github.com/Sandeep0045/sample-dot-net-code.git', branch: 'master'
      }
   }
-  stage('Restore packages'){
-    steps{
-      bat "dotnet restore "
+       stage('Restore packages'){
+          steps{
+              bat "dotnet restore "
      }
   }
-  stage('Clean'){
-    steps{
-        bat "dotnet clean "
+      stage('Clean'){
+         steps{
+             bat "dotnet clean "
      }
    }
-  stage('Build'){
-    steps{
-      bat "dotnet build "
+      stage('Build'){
+         steps{
+             bat "dotnet build "
     }
  }
-  stage('Test: Unit Test'){
-    steps {
-      bat "dotnet test"
+      stage('Test: Unit Test'){
+         steps {
+             bat "dotnet test"
      }
   }
        
-  stage('Test: Integration Test'){
-    steps {
-       bat "dotnet test"
+      stage('Test: Integration Test'){
+         steps {
+             bat "dotnet test"
       }
    }
   
-  stage('Publish'){
-    steps{
-      bat "dotnet publish "
+     stage('Publish'){
+        steps{
+            bat "dotnet publish "
      }
 }
+        
 }
-    
+
+}   
   
