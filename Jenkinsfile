@@ -1,15 +1,9 @@
-pipeline{
+pipeline {
     agent any
-    
-    environment {
-        dotnet ='C:\\Program Files (x86)\\dotnet\\'
-        }
-        
-    triggers {
-        pollSCM 'H * * * *'
-    }
- }
-    stages{
+     triggers {
+        githubPush()
+      }
+    stages {
         stage('Checkout') {
            steps {
            git credentialsId: 'asp' , url: 'https://github.com/Sandeep0045/sample-dot-net-code.git', branch: 'master'
