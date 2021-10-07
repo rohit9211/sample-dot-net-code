@@ -35,10 +35,20 @@ pipeline {
              bat "dotnet test"
       }
    }
+      
+      stage('Sonar Analysis'){
+         steps {
+             bat''' dotnet sonarscanner /k:"ASPDOTNET"  /d:sonar.login="d21386517e6e82d1d5ffd90551314f30a6d76215" /d:sonar.host.url="http://34.89.172.47:9000/"
+                    dotnet build WebAppRazor.sln 
+                    dotnet sonarscanner end /d:sonar.login="d21386517e6e82d1d5ffd90551314f30a6d76215"
+                '''    
+                 
+      }
+   }  
   
      stage('Publish'){
         steps{
-            bat "dotnet publish "
+            bat "dotnet publish" 
      }
 }
         
