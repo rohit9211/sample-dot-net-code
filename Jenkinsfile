@@ -52,6 +52,17 @@ pipeline {
      }
 }
         
+        
+        
+     stage('Push to Artifactory'){
+         steps {
+             bat''' cd C:\Windows\System32\config\systemprofile\AppData\Local\Jenkins\.jenkins\workspace\ASP-NEW-APP\WebAppRazor\bin\Debug
+                    jfrog rt u netcoreapp3.0  dotnetcore/  --url http://34.90.222.129:8082/artifactory --user admin --password $artifactory-password
+                '''
+         }
+     }         
+       
+            
 }
 
 
