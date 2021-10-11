@@ -57,7 +57,7 @@ pipeline {
      stage('Push to Artifactory'){
          steps {
              bat''' cd WebAppRazor/bin/Debug
-                    jfrog rt u netcoreapp3.0  dotnetcore/  --url http://34.90.222.129:8082/artifactory --user admin --password $artifactory-password
+                    jfrog rt u netcoreapp3.0  dotnetcore/  --url http://34.141.160.89:8082/artifactory --user admin --password $artifactory-password
                     '''
          }
      }         
