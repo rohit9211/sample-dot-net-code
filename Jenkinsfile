@@ -57,7 +57,7 @@ pipeline {
      stage('Push to Artifactory'){
          steps {
              bat''' cd WebAppRazor/bin/Debug
-                    powershell.exe -NonInteractive -ExecutionPolicy Bypass -Command compress-archive ./netcoreapp3.0/ netcoreapp_{$BUILD_NUMBER}.zip
+                    powershell.exe -NonInteractive -ExecutionPolicy Bypass -Command compress-archive ./netcoreapp3.0/ netcoreapp_{$BUILD_ID}.zip
                     jfrog rt u *.zip  dotnetcore/  --url http://34.141.160.89:8082/artifactory --user admin --password Emids9211!
                     '''
          }
