@@ -56,11 +56,13 @@ pipeline {
         
      stage('Push to Artifactory'){
          steps {
+             withCredentials([usernamePassword(credentialsId: 'artifactory-cred', passwordVariable: 'pass', usernameVariable: 'user')]) {
              bat''' cd WebAppRazor/bin/Debug
                     powershell.exe -NonInteractive -ExecutionPolicy Bypass -Command compress-archive ./netcoreapp3.0/ netcoreapp_%BUILD_ID%.zip
-                    jfrog rt u *.zip  dotnetcore/  --url http://34.147.49.82:8082/artifactory --user admin --password Emids9211!
+                    jfrog rt u *.zip  dotnetcore/  --url http://34.147.49.82:8082/artifactory --user %admin% --password %pass%
                     powershell.exe -NonInteractive -ExecutionPolicy Bypass -Command  remove-item * -Force -Recurse
                     '''
+             }
          }
      }         
        
